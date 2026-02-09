@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Yes or No</title>
+
+<style>
+    body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+    }
+
+    .container {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        text-align: center;
+    }
+
+    .center-image {
+        width: 120px;
+        margin: 0 auto 8px;
+        display: block;
+    }
+
+    .love-text {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+
+    button {
+        padding: 10px 25px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #yesBtn {
+        background: #4CAF50;
+        color: white;
+        margin-right: 10px;
+    }
+
+    #noBtn {
+        background: #f44336;
+        color: white;
+        position: absolute;
+        pointer-events: none;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <img src="your-image.png" alt="Center Image" class="center-image">
+
+    <div class="love-text">Love mo ak?</div>
+
+    <button id="yesBtn" onclick="alert('Love you tooo mwaaa')">Yes</button>
+    <button id="noBtn">No</button>
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+    const container = document.querySelector(".container");
+
+    function moveButton() {
+        const maxX = container.clientWidth - noBtn.offsetWidth;
+        const maxY = container.clientHeight - noBtn.offsetHeight;
+
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        noBtn.style.left = randomX + "px";
+        noBtn.style.top = randomY + "px";
+    }
+
+    container.addEventListener("mousemove", (e) => {
+        const rect = noBtn.getBoundingClientRect();
+        if (
+            e.clientX > rect.left - 10 &&
+            e.clientX < rect.right + 10 &&
+            e.clientY > rect.top - 10 &&
+            e.clientY < rect.bottom + 10
+        ) {
+            moveButton();
+        }
+    });
+
+    container.addEventListener("touchstart", moveButton);
+</script>
+
+</body>
+</html>
+
+     
+    
